@@ -15,17 +15,18 @@ function isLoggedIn(req, res, next) {
 
 const port = process.env.PORT || 3000;
 const SECT_SRECT = process.env.SECTION_SRECT
+const CRY_SRECT = process.env.CRYPTO_SRECT
 const app = express();
 
 //Express-session
 app.use(session({
   secret: `${SECT_SRECT}`,
-  saveUninitialized: true, // don't create session until something stored
-  resave: false, //don't save session if unmodified
+  saveUninitialized: true, // create session until something stored
+  resave: false, // save session if unmodified
   store: MongoStore.create({
     mongoUrl: process.env.MONGO_API_KEY,
     crypto: {
-      secret: 'squirrel'
+      secret: `${CRY_SRECT}`
     }
   })
 }));
