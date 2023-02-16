@@ -17,11 +17,26 @@ const SECT_SRECT = process.env.SECTION_SRECT
 const app = express();
 
 //Express-session
-app.use(session({
+var sess = {
   secret: `${SECT_SRECT}`, 
   resave: false, 
-  saveUninitialized: true
-}));
+  saveUninitialized: true,
+  cookie: {}
+}
+
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
+}
+
+app.use(session(sess))
+
+// app.use(session({
+//   secret: `${SECT_SRECT}`, 
+//   resave: false, 
+//   saveUninitialized: true,
+//   cookie: { secure: true }
+// }));
 app.use(passport.initialize());
 app.use(passport.session());
 
