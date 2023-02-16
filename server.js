@@ -13,10 +13,15 @@ function isLoggedIn(req, res, next) {
 
 
 const port = process.env.PORT || 3000;
+const SECT_SRECT = process.env.SECTION_SRECT
 const app = express();
 
 //Express-session
-app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: true}));
+app.use(session({
+  secret: `${SECT_SRECT}`, 
+  resave: false, 
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -31,7 +36,7 @@ app.get('/auth/google',
 
 app.get( '/google/callback',
     passport.authenticate( 'google', {
-        successRedirect: '/',
+        successRedirect: '/user',
         failureRedirect: '/google/failure'
 }));
 
