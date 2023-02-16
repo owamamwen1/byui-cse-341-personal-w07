@@ -27,7 +27,7 @@ var sess = {
 
 if (app.get('env') === 'production') {
   app.set('trust proxy', 30) // trust first proxy
-  sess.cookie.secure = true // serve secure cookies
+  sess.cookie.secure = false // serve secure cookies
 }
 
 app.use(session(sess))
@@ -36,8 +36,8 @@ app.use(session(sess))
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/login', async (req, res) => {
-  await res.send('<a href="/auth/google">Authenticate with google</a>');
+app.get('/login', (req, res) => {
+   res.send('<a href="/auth/google">Authenticate with google</a>');
 });
 
 app.get('/auth/google',
