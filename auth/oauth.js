@@ -4,11 +4,12 @@ require('dotenv').config();
 
 const GOOGLE_CLIENT_ID = process.env.CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.CLIENT_SECRET;
+const CALL_BACK_URL = process.env.CALL_URL;
 
 passport.use(new GoogleStrategy({
     clientID:     GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://byui-cse-341-personal-w07.onrender.com/google/callback",
+    callbackURL: `${CALL_BACK_URL}`,
     passReqToCallback   : true,
   },
   function(request, accessToken, refreshToken, profile, done) {
