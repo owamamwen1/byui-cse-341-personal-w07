@@ -29,3 +29,5 @@ https://byui-cse-341-personal-w07.onrender.com/api-docs
 ```
 
 "host": "byui-cse-341-personal-w07.onrender.com",
+
+http://localhost:3000/google/callback
