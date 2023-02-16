@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const passport = require('passport');
 require('./auth/oauth.js');
 
@@ -18,19 +19,26 @@ const app = express();
 
 //Express-session
 
-var sess = {
+// var sess = {
+//   secret: `${SECT_SRECT}`,
+//   resave: false, 
+//   saveUninitialized: true,
+//   cookie: {}
+// }
+// if (app.get('env') === 'production') {
+//   app.set('trust proxy', 30) // trust first proxy
+//   sess.cookie.secure = false // serve secure cookies
+// }
+// app.use(session(sess))
+app.use(session({
   secret: `${SECT_SRECT}`,
-  resave: false, 
-  saveUninitialized: true,
-  cookie: {}
-}
-
-if (app.get('env') === 'production') {
-  app.set('trust proxy', 30) // trust first proxy
-  sess.cookie.secure = false // serve secure cookies
-}
-
-app.use(session(sess))
+  saveUninitialized: true, // don't create session until something stored
+  resave: false, //don't save session if unmodified
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_API_KEY,
+    touchAfter: 24 * 3600 // time period in seconds
+  })
+}));
 
 
 app.use(passport.initialize());
