@@ -1,0 +1,52 @@
+{
+  "username": "Luca",
+  "password": "Luca@12345",
+  "profile": {
+    "student": [
+      {
+        "fullName": "Owamamwen Ogunniyi",
+        "major": "Applied Technology",
+        "description": "Web development",
+        "term": "Winter",
+        "courses": [
+          "cse341"
+        ],
+        "dateStart": "04/01/2023",
+        "dateEnd": "04/04/2023",
+        "branch": "Idaho",
+        "city": "Idaho",
+        "country": "USA"
+      }
+    ],
+    "group": [
+      {
+        "dateStart": "15/01/2023",
+        "team": [
+          "Team Assignment 1",
+          "Team Assignment 2",
+          "Team Assignment 3",
+          "Team Assignment 4"
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "title": "Week6",
+        "body": "You can fix bugs and error handle",
+        "date": "20/01/2023",
+        "images": [
+          "https://google.com/programming_nodejs"
+        ]
+      }
+    ]
+  },
+  "info": {
+    "lastName": "Matteo",
+    "email": "luca@yahoo.com",
+    "phoneNumber": "453563635",
+    "country": "USA",
+    "city": "Utah",
+    "isPublic": true,
+    "faculty_name": "Applied Technology"
+  }
+}

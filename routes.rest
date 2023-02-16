@@ -1,0 +1,211 @@
+// LOCALHOST 
+
+### GET all users 
+
+GET http://localhost:3000/user
+
+### GET user by id s
+
+GET http://localhost:3000/user/Luc
+
+### Create new user 
+
+POST  http://localhost:3000/user HTTP/1.1
+content-type: application/json
+
+{
+  "username": "Luca",
+  "password": "Luca@12345"
+}
+
+### PUT user 
+PUT http://localhost:3000/user/Luca HTTP/1.1
+content-type: application/json
+
+{
+  "username": "Luca",
+  "password": "Luca@12345",
+  "profile": {
+    "student": [
+      {
+        "fullName": "Owamamwen Ogunniyi",
+        "major": "Applied Technology",
+        "description": "Web developement",
+        "term": "Winter",
+        "courses": [
+          "cse341"
+        ],
+        "dateStart": "04/01/2023",
+        "dateEnd": "04/04/2023",
+        "branch": "Idaho",
+        "city": "Idaho",
+        "country": "USA"
+      }
+    ],
+    "group": [
+      {
+        "dateStart": "15/01/2023",
+        "team": [
+          "Team Assignment 5",
+          "Team Assignment 6",
+          "Team Assignment 7",
+          "Team Assignment 8"
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "title": "Week6",
+        "body": "Fix data validation and error handling",
+        "date": "10/02/2023",
+        "images": [
+          "https://google.com/programming_nodejs"
+        ]
+      }
+    ]
+  },
+  "info": {
+    "firstName": "Luca",
+    "lastName": "Matteo",
+    "email": "luca@yahoo.com",
+    "phoneNumber": "453563635",
+    "country": "USA",
+    "city": "Utah",
+    "isPublic": true,
+    "faculty_name": "Applied Technology"
+  }
+}
+
+
+
+### DELETE user 
+
+DELETE http://localhost:3000/user/Luca HTTP/1.1
+
+
+// PRODUCTION Deploy 
+
+### GET all users 
+GET https://byui-cse-341-personal-w06.onrender.com/user
+
+### GET user by id 
+
+GET https://byui-cse-341-personal-w06.onrender.com/Luca
+
+### Create new user 
+
+POST  https://byui-cse-341-personal-w06.onrender.com/user HTTP/1.1
+content-type: application/json
+
+{
+  "username": "Luca",
+  "password": "Luca@12345"
+}
+
+### PUT user 
+PUT https://byui-cse-341-personal-w06.onrender.com/user/Luca HTTP/1.1
+content-type: application/json
+
+{
+  "username": "Luca",
+  "password": "Luca@12345",
+  "profile": {
+    "student": [
+      {
+        "fullName": "Owamamwen Ogunniyi",
+        "major": "Applied Technology",
+        "description": "Applied Technology",
+        "term": "Winter",
+        "courses": [
+          "cse341"
+        ],
+        "dateStart": "04/01/2023",
+        "dateEnd": "04/04/2023",
+        "branch": "Idaho",
+        "city": "Idaho",
+        "country": "USA"
+      },
+      {
+        "fullName": "Daniel Gerdes",
+        "major": "Applied Technology",
+        "description": "DataBase",
+        "term": "Winter",
+        "courses": [
+          "cse341"
+        ],
+        "dateStart": "04/01/2023",
+        "dateEnd": "04/04/2023",
+        "branch": "Idaho",
+        "city": "Idaho",
+        "country": "USA"
+      },
+            {
+        "fullName": "Aaron Quarshies",
+        "major": "Applied Technology",
+        "description": "Web and Programming",
+        "term": "Winter",
+        "courses": [
+          "cse341"
+        ],
+        "dateStart": "04/01/2023",
+        "dateEnd": "04/04/2023",
+        "branch": "Idaho",
+        "city": "Idaho",
+        "country": "USA"
+      }
+    ],
+    "group": [
+      {
+        "dateStart": "15/01/2023",
+        "team": [
+          "Team Assignment 5",
+          "Team Assignment 6",
+          "Team Assignment 7",
+          "Team Assignment 8"
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "title": "Week6",
+        "body": "Fix data validation and error handling",
+        "date": "10/02/2023",
+        "images": [
+          "https://google.com/programming_nodejs"
+        ]
+      },
+       {
+        "title": "Week7",
+        "body": "Fix login credential",
+        "date": "15/02/2023",
+        "images": [
+          "https://google.com/nodejs"
+        ]
+      },
+      {
+        "title": "Week8",
+        "body": "Please get ready to submit your assignment.",
+        "date": "19/02/2023",
+        "images": [
+          "https://google.com/express_nodejs"
+        ]
+      }
+    ]
+  },
+  "info": {
+    "firstName": "Luca",
+    "lastName": "Matteo",
+    "email": "luca@yahoo.com",
+    "phoneNumber": "453563635",
+    "country": "USA",
+    "city": "Utah",
+    "isPublic": true,
+    "faculty_name": "Applied Technology"
+  }
+}
+
+
+
+### DELETE user 
+
+DELETE https://byui-cse-341-personal-w06.onrender.com/Luca HTTP/1.1

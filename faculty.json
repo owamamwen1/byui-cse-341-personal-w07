@@ -1,0 +1,11 @@
+{
+"facultyName":"Web development",
+"role":"teacher",
+"branch":"Idaho",
+"website":"https://www.byui.edu",
+"courses":[
+    "cse340",
+    "cse341",
+    "cit326"
+       ]
+}

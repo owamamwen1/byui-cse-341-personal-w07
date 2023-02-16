@@ -1,0 +1,472 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The api server",
+    "version": "1.0.0",
+    "title": "Week Seven assignment",
+    "contact": {
+      "email": "ogu21002@byui.edu"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "byui-cse-341-personal-w07.onrender.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "faculty",
+      "description": "Operations about faculty"
+    },
+    {
+      "name": "user",
+      "description": "Operations about user"
+    },
+    {
+      "name": "OAuth - Credentials",
+      "description": "These API endpoints are designed and will be created in the near future"
+    }
+  ],
+  "schemes": ["https"],
+  "paths": {
+    "/faculty/{facultyName}": {
+      "get": {
+        "tags": ["faculty"],
+        "summary": "Finds Faculties by name",
+        "description": "Each faculty has a unique name, this will basically find a single faculty by an exact name almost like an id",
+        "operationId": "findFacultyByName",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "facultyName",
+            "in": "path",
+            "description": "Faculty name string is required and functions as id",
+            "required": true,
+            "type": "string",
+            "items": {
+              "type": "string",
+              "default": "available"
+            },
+            "collectionFormat": "csv"
+          }
+        ],
+        "security": [
+          {
+            "petstore_auth": ["write:pets", "read:pets"]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "400": {
+            "description": "Invalid faculty name value"
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Create user",
+        "description": "This is for when a user creates an account.",
+        "operationId": "createUser",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Credentials"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successfully created user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Web development"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid faculty name value"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": ["Logout"],
+        "summary": "Logs out current logged in user session",
+        "operationId": "logoutUser",
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/{username}": {
+      "get": {
+        "tags": ["user"],
+        "summary": "Get user by user name",
+        "operationId": "getUserByName",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be fetched.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["user"],
+        "summary": "Updated user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateUser",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully modified user"
+          },
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["user"],
+        "summary": "Delete user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deleteUser",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted user"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": ["user"],
+        "summary": "Get all users",
+        "operationId": "getAllUsers",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "Array",
+              "$ref": "#/definitions/User"
+            }
+          },
+          "500": {
+            "description": "Error occurred"
+          }
+        }
+      },
+      "post": {
+        "tags": ["user"],
+        "summary": "Create user",
+        "description": "This is for when a user creates an account",
+        "operationId": "createUser",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Credentials"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "A User object",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": ["password", "username"],
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "format": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "info": {
+          "$ref": "#/definitions/User_info"
+        },
+        "profile": {
+          "$ref": "#/definitions/User_profile"
+        }
+      }
+    },
+    "Faculty": {
+      "type": "object",
+      "required": ["courses", "branch", "role", "name"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string",
+          "example": "Web development"
+        },
+        "role": {
+          "type": "string",
+          "example": "teacher"
+        },
+        "branch": {
+          "type": "string",
+          "example": "Idaho"
+        },
+        "website": {
+          "type": "string",
+          "example": "https://www.byui.edu/"
+        },
+        "courses": {
+          "type": "array",
+          "example": ["cit325", "cse341"],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Credentials": {
+      "type": "object",
+      "required": ["password", "username"],
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "User_info": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "faculty_name": {
+          "type": "string"
+        }
+      }
+    },
+    "User_profile_student": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "type": "string"
+        },
+        "major": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "term": {
+          "type": "string"
+        },
+        "courses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dateStart": {
+          "type": "string"
+        },
+        "dateEnd": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "User_profile_group": {
+      "type": "object",
+      "properties": {
+        "dateStart": {
+          "type": "string"
+        },
+        "group": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "User_profile_announcements": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "User_profile": {
+      "type": "object",
+      "properties": {
+        "student": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/User_profile_student"
+          }
+        },
+        "group": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/User_profile_group"
+          }
+        },
+        "announcements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/User_profile_announcements"
+          }
+        }
+      }
+    }
+  }
+}
