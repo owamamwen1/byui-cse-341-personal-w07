@@ -22,7 +22,7 @@ const app = express();
 app.use(session({
   secret: `${SECT_SRECT}`,
   saveUninitialized: true, // create session until something stored
-  resave: false, // save session if unmodified
+  resave: false, // dont save session if unmodified
   store: MongoStore.create({
     mongoUrl: process.env.MONGO_API_KEY,
     crypto: {
