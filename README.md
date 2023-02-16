@@ -4,10 +4,10 @@ WEB APIs
 
 MongoDB atlas
 
-## github
+## OAuth - Google Account
 
 ```
-https://github.com/owamamwen1/byui-cse-341-personal-w07.git
+https://byui-cse-341-personal-w07.onrender.com/login
 ```
 
 ## host on render (www.render.com)
@@ -26,4 +26,10 @@ https://byui-cse-341-personal-w07.onrender.com/user/username
 
 ```
 https://byui-cse-341-personal-w07.onrender.com/api-docs
+```
+
+## OAuth Logout
+
+```
+https://byui-cse-341-personal-w07.onrender.com/logout
 ```
