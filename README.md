@@ -10,6 +10,12 @@ MongoDB atlas
 https://byui-cse-341-personal-w07.onrender.com/login
 ```
 
+## swagger APIs
+
+```
+https://byui-cse-341-personal-w07.onrender.com/api-docs
+```
+
 ## host on render (www.render.com)
 
 ```
@@ -20,12 +26,6 @@ https://byui-cse-341-personal-w07.onrender.com/user
 
 ```
 https://byui-cse-341-personal-w07.onrender.com/user/username
-```
-
-## swagger APIs
-
-```
-https://byui-cse-341-personal-w07.onrender.com/api-docs
 ```
 
 ## OAuth Logout
